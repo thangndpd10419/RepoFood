@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Food&amp;Drink Admin</string>
+
+    <!-- Login -->
+    <string name="login_title">Đăng nhập</string>
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="login">Đăng nhập</string>
+    <string name="logout">Đăng xuất</string>
+
+    <!-- Navigation -->
+    <string name="nav_users">Người dùng</string>
+    <string name="nav_categories">Danh mục</string>
+    <string name="nav_products">Sản phẩm</string>
+    <string name="nav_revenue">Doanh thu</string>
+
+    <!-- Actions -->
+    <string name="add">Thêm</string>
+    <string name="edit">Sửa</string>
+    <string name="delete">Xóa</string>
+    <string name="save">Lưu</string>
+    <string name="cancel">Hủy</string>
+    <string name="search">Tìm kiếm</string>
+
+    <!-- Messages -->
+    <string name="loading">Đang tải...</string>
+    <string name="no_data">Không có dữ liệu</string>
+    <string name="error">Lỗi</string>
+    <string name="success">Thành công</string>
+</resources>

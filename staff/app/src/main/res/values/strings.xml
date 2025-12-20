@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Food&amp;Drink Staff</string>
+
+    <!-- Login -->
+    <string name="login">Đăng nhập</string>
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
+    <string name="logging_in">Đang đăng nhập...</string>
+    <string name="login_success">Đăng nhập thành công</string>
+    <string name="login_error">Đăng nhập thất bại</string>
+    <string name="staff_only">Chỉ nhân viên mới có thể đăng nhập</string>
+
+    <!-- Navigation -->
+    <string name="nav_products">Sản phẩm</string>
+    <string name="nav_tables">Bàn</string>
+    <string name="nav_cart">Giỏ hàng</string>
+    <string name="nav_orders">Đơn hàng</string>
+    <string name="nav_profile">Tài khoản</string>
+
+    <!-- Products -->
+    <string name="search_products">Tìm kiếm sản phẩm...</string>
+    <string name="all_categories">Tất cả</string>
+    <string name="add_to_cart">Thêm vào giỏ</string>
+    <string name="no_products">Không có sản phẩm</string>
+
+    <!-- Tables -->
+    <string name="select_table">Chọn bàn</string>
+    <string name="table_number">Bàn %d</string>
+    <string name="table_available">Trống</string>
+    <string name="table_occupied">Đang phục vụ</string>
+
+    <!-- Cart -->
+    <string name="cart">Giỏ hàng</string>
+    <string name="cart_empty">Giỏ hàng trống</string>
+    <string name="total">Tổng cộng</string>
+    <string name="place_order">Đặt hàng</string>
+    <string name="clear_cart">Xóa giỏ hàng</string>
+    <string name="order_note">Ghi chú đơn hàng</string>
+    <string name="note_hint">Nhập ghi chú (tùy chọn)...</string>
+
+    <!-- Orders -->
+    <string name="orders">Đơn hàng</string>
+    <string name="order_id">Đơn #%d</string>
+    <string name="order_success">Đặt hàng thành công!</string>
+    <string name="order_failed">Đặt hàng thất bại</string>
+    <string name="no_orders">Chưa có đơn hàng</string>
+    <string name="select_table_first">Vui lòng chọn bàn trước</string>
+
+    <!-- Status -->
+    <string name="status_pending">Chờ xác nhận</string>
+    <string name="status_confirmed">Đã xác nhận</string>
+    <string name="status_processing">Đang xử lý</string>
+    <string name="status_completed">Hoàn thành</string>
+    <string name="status_cancelled">Đã hủy</string>
+
+    <!-- Profile -->
+    <string name="profile">Tài khoản</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="logout_confirm">Bạn có chắc muốn đăng xuất?</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="cancel">Hủy</string>
+
+    <!-- Common -->
+    <string name="loading">Đang tải...</string>
+    <string name="error">Lỗi</string>
+    <string name="retry">Thử lại</string>
+    <string name="ok">OK</string>
+    <string name="items">sản phẩm</string>
+</resources>

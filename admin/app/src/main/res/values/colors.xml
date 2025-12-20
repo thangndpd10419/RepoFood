@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Orange/Coral Theme -->
+    <color name="primary">#FF6B35</color>
+    <color name="primary_dark">#E55A2B</color>
+    <color name="primary_light">#FF8F5C</color>
+    <color name="primary_soft">#FFF0E8</color>
+
+    <!-- Accent Colors -->
+    <color name="accent">#FFB347</color>
+    <color name="accent_yellow">#FFD93D</color>
+    <color name="accent_green">#4CAF50</color>
+
+    <!-- Background -->
+    <color name="background">#FAFAFA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_hint">#999999</color>
+    <color name="text_on_primary">#FFFFFF</color>
+
+    <!-- Status Colors -->
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FFC107</color>
+    <color name="error">#F44336</color>
+    <color name="info">#2196F3</color>
+
+    <!-- Category Chip Colors -->
+    <color name="chip_selected">#FF6B35</color>
+    <color name="chip_unselected">#F5F5F5</color>
+    <color name="chip_text_selected">#FFFFFF</color>
+    <color name="chip_text_unselected">#666666</color>
+
+    <!-- Shadows & Overlays -->
+    <color name="shadow">#1A000000</color>
+    <color name="overlay">#80000000</color>
+    <color name="divider">#EEEEEE</color>
+
+    <!-- Legacy support -->
+    <color name="purple_200">#FF6B35</color>
+    <color name="purple_500">#FF6B35</color>
+    <color name="purple_700">#E55A2B</color>
+    <color name="teal_200">#FFB347</color>
+    <color name="teal_700">#FF8F5C</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

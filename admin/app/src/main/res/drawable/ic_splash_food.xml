@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Plate/Tray -->
+    <path
+        android:fillColor="#8B4513"
+        android:pathData="M20,160 Q100,180 180,160 L175,170 Q100,190 25,170 Z" />
+
+    <!-- Burger Bottom Bun -->
+    <path
+        android:fillColor="#D2691E"
+        android:pathData="M40,130 Q100,145 160,130 L155,140 Q100,155 45,140 Z" />
+
+    <!-- Burger Patty -->
+    <path
+        android:fillColor="#654321"
+        android:pathData="M45,120 Q100,130 155,120 L155,130 Q100,145 45,130 Z" />
+
+    <!-- Lettuce -->
+    <path
+        android:fillColor="#228B22"
+        android:pathData="M42,115 Q55,125 70,115 Q85,125 100,115 Q115,125 130,115 Q145,125 158,115 L158,120 Q100,135 42,120 Z" />
+
+    <!-- Cheese -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M48,105 L152,105 L155,115 Q100,125 45,115 Z" />
+
+    <!-- Burger Patty Top -->
+    <path
+        android:fillColor="#8B4513"
+        android:pathData="M50,95 Q100,100 150,95 L152,105 Q100,115 48,105 Z" />
+
+    <!-- Top Bun -->
+    <path
+        android:fillColor="#D2691E"
+        android:pathData="M50,95 Q100,50 150,95 Z" />
+
+    <!-- Sesame Seeds -->
+    <path
+        android:fillColor="#FFFACD"
+        android:pathData="M70,70 A3,5 0 1,1 70,80 A3,5 0 1,1 70,70" />
+    <path
+        android:fillColor="#FFFACD"
+        android:pathData="M90,60 A3,5 0 1,1 90,70 A3,5 0 1,1 90,60" />
+    <path
+        android:fillColor="#FFFACD"
+        android:pathData="M110,60 A3,5 0 1,1 110,70 A3,5 0 1,1 110,60" />
+    <path
+        android:fillColor="#FFFACD"
+        android:pathData="M130,70 A3,5 0 1,1 130,80 A3,5 0 1,1 130,70" />
+
+    <!-- Fries Box (left side) -->
+    <path
+        android:fillColor="#DC143C"
+        android:pathData="M5,100 L35,100 L30,160 L10,160 Z" />
+
+    <!-- Fries -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M10,100 L12,60 L16,60 L14,100 Z" />
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M16,100 L20,55 L24,55 L20,100 Z" />
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M22,100 L26,65 L30,65 L26,100 Z" />
+
+    <!-- Drink Cup (right side) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M165,70 L195,70 L190,160 L170,160 Z" />
+
+    <!-- Drink Color -->
+    <path
+        android:fillColor="#FF6347"
+        android:pathData="M167,80 L193,80 L189,150 L171,150 Z" />
+
+    <!-- Cup Lid -->
+    <path
+        android:fillColor="#DC143C"
+        android:pathData="M162,65 L198,65 L195,75 L165,75 Z" />
+
+    <!-- Straw -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M178,30 L182,30 L182,80 L178,80 Z" />
+
+    <!-- Straw Bend -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M178,30 Q175,25 178,20 L182,20 Q185,25 182,30" />
+
+</vector>
