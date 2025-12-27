@@ -17,9 +17,13 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     Long countByStatus(OrderStatus status);
 
+
+    // total from order where status = completed;
     @Query("SELECT COALESCE(SUM(o.totalPrice), 0) FROM Order o WHERE o.status = :status")
     BigDecimal sumTotalPriceByStatus(@Param("status") OrderStatus status);
 
+    // total from order where create_at [ start, end ] and status = completed
+    // tôtnrg daonh thu theo khoang thoi gian
     @Query("SELECT COALESCE(SUM(o.totalPrice), 0) FROM Order o WHERE o.createAt BETWEEN :startDate AND :endDate AND o.status = :status")
     BigDecimal sumRevenueByDateRange(
             @Param("startDate") LocalDateTime startDate,
@@ -27,12 +31,18 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             @Param("status") OrderStatus status
     );
 
+
+    // count(*) from order where create_at [start, end] : tong don hang
     @Query("SELECT COUNT(o) FROM Order o WHERE o.createAt BETWEEN :startDate AND :endDate")
     Long countOrdersByDateRange(
             @Param("startDate") LocalDateTime startDate,
             @Param("endDate") LocalDateTime endDate
     );
 
+
+    // date , sum , count from order where create [start,end] and status =completed
+    // group by create_at  select orderby date Asc.
+    // doanh thu theo ngay ( băt đầu ngày, két thuc ngay, completed)
     @Query("SELECT FUNCTION('DATE', o.createAt) as date, SUM(o.totalPrice) as revenue, COUNT(o) as orders " +
             "FROM Order o " +
             "WHERE o.createAt BETWEEN :startDate AND :endDate AND o.status = :status " +
@@ -44,6 +54,9 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             @Param("status") OrderStatus status
     );
 
+
+    // year month total count from order group by year, month
+    // donah thu, tổng theo thời gian ( tháng)
     @Query("SELECT FUNCTION('YEAR', o.createAt) as year, FUNCTION('MONTH', o.createAt) as month, " +
             "SUM(o.totalPrice) as revenue, COUNT(o) as orders " +
             "FROM Order o " +
@@ -56,6 +69,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
             @Param("status") OrderStatus status
     );
 
+    // năm
     @Query("SELECT FUNCTION('YEAR', o.createAt) as year, SUM(o.totalPrice) as revenue, COUNT(o) as orders " +
             "FROM Order o " +
             "WHERE o.status = :status " +

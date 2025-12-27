@@ -54,7 +54,7 @@ public final class ConstantUtils {
 
         public static final String TOKEN_NOT_FOUND = "Token not found";
         public static final String TOKEN_IS_REVOKED ="Token forbidden";
-        public static final String TOKEN_IS_EXPIRED ="Tọken Expired";
+        public static final String TOKEN_IS_EXPIRED ="Token Expired";
 
     }
 

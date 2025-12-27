@@ -1,8 +1,6 @@
 package com.example.foodbe.services.impls;
 
 import com.example.foodbe.exception_handler.NotFoundException;
-import com.example.foodbe.mapper.UserPendingMapper;
-import com.example.foodbe.models.UserPending;
 import com.example.foodbe.payload.PageResponse;
 import com.example.foodbe.request.user.UserCreateDTO;
 import com.example.foodbe.request.user.UserUpdateDTO;
@@ -16,14 +14,10 @@ import com.example.foodbe.utils.PageMapperUtils2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final PasswordEncoder bCryptPasswordEncoder;
     private final PageMapperUtils2 pageMapperUtils2;
-    private final UserPendingMapper userPendingMapper;
+
 
     @Override
     public PageResponse<UserResponseDTO> findByEmail(String email, Pageable pageable) {
@@ -67,17 +61,6 @@ public class UserServiceImpl implements UserService {
         return userMapper.toDto(userRepository.save(user));
     }
 
-    @Override
-    public UserResponseDTO create2(UserPending userPending) {
-        if (userRepository.existsByEmail(userPending.getEmail())) {
-            throw new NotFoundException(ConstantUtils.ExceptionMessage.EXISTS);
-        }
-        String newPass=  bCryptPasswordEncoder.encode(userPending.getPassword());
-        userPending.setPassword(newPass);
-        AppUser user= userPendingMapper.toAppUser(userPending);
-
-        return userMapper.toDto(userRepository.save(user));
-    }
 
     @Override
     public AppUser findByEmail(String email) {
@@ -87,25 +70,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponseDTO update(Long id, UserUpdateDTO userUpdateDTO) {
-        AppUser user = userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(ConstantUtils.ExceptionMessage.NOT_FOUND + id));
+    public UserResponseDTO update( UserUpdateDTO userUpdateDTO) {
+        AppUser user = userRepository.findById(userUpdateDTO.getId())
+                .orElseThrow(() -> new NotFoundException(ConstantUtils.ExceptionMessage.NOT_FOUND + userUpdateDTO.getId()));
 
-        if (userUpdateDTO.getName() != null) {
-            user.setName(userUpdateDTO.getName());
-        }
-        if (userUpdateDTO.getEmail() != null) {
-            user.setEmail(userUpdateDTO.getEmail());
-        }
-        if (userUpdateDTO.getPhone() != null) {
-            user.setPhone(userUpdateDTO.getPhone());
-        }
-        if (userUpdateDTO.getStatus() != null) {
-            user.setStatus(userUpdateDTO.getStatus());
-        }
-        if (userUpdateDTO.getRole() != null) {
-            user.setRole(userUpdateDTO.getRole());
-        }
+        String newPass = bCryptPasswordEncoder.encode(userUpdateDTO.getPassword());
+
+         userMapper.updateToEntity(userUpdateDTO,newPass, user);
 
         return userMapper.toDto(userRepository.save(user));
     }

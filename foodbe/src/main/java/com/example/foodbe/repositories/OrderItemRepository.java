@@ -13,6 +13,8 @@ import java.util.List;
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
     List<OrderItem> findByOrderId(Long id);
 
+    // id product, img product, sum( type product) count from orders, product
+    // group by orders. product id,..
     @Query("SELECT oi.product.id, oi.product.name, oi.product.imgProduct, " +
             "SUM(oi.price * oi.quantity) as revenue, SUM(oi.quantity) as quantity, COUNT(DISTINCT oi.order.id) as orders " +
             "FROM OrderItem oi " +
@@ -21,6 +23,7 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
             "ORDER BY revenue DESC")
     List<Object[]> findTopProductsByRevenue(@Param("status") OrderStatus status, Pageable pageable);
 
+    // tươn tự nhưng vơi range
     @Query("SELECT oi.product.id, oi.product.name, oi.product.imgProduct, " +
             "SUM(oi.price * oi.quantity) as revenue, SUM(oi.quantity) as quantity, COUNT(DISTINCT oi.order.id) as orders " +
             "FROM OrderItem oi " +
@@ -33,6 +36,7 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
             @Param("endDate") LocalDateTime endDate,
             Pageable pageable
     );
+
 
     @Query("SELECT oi.product.category.id, oi.product.category.name, " +
             "SUM(oi.price * oi.quantity) as revenue, COUNT(DISTINCT oi.order.id) as orders " +

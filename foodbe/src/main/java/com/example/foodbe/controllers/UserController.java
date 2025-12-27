@@ -1,6 +1,5 @@
 package com.example.foodbe.controllers;
 
-import com.example.foodbe.models.UserPending;
 import com.example.foodbe.payload.ApiResponse;
 import com.example.foodbe.payload.PageResponse;
 import com.example.foodbe.request.user.UserCreateDTO;
@@ -63,16 +62,10 @@ public class UserController {
        return ResponseEntity.ok(ApiResponse.success(ConstantUtils.DELETE_SUCCESSFULLY +id));
     }
 
-    @PostMapping("/create2")
-    public ResponseEntity<ApiResponse<UserResponseDTO>> create2(@Valid @RequestBody UserPending userPending){
-        return ResponseEntity.ok(ApiResponse.success(userService.create2(userPending)));
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<UserResponseDTO>> update(
-            @PathVariable Long id,
             @Valid @RequestBody UserUpdateDTO userUpdateDTO) {
-        return ResponseEntity.ok(ApiResponse.success(userService.update(id, userUpdateDTO)));
+        return ResponseEntity.ok(ApiResponse.success(userService.update( userUpdateDTO)));
     }
 
 }

@@ -14,6 +14,9 @@ import lombok.*;
 @Builder
 public class UpdateCategoryDTO {
 
+    @NotNull
+    private Long id;
+
     @FormatWhitespace
     @NotBlank(message = "{entity.name.required}")
     @Size(max = 30, message = "{entity.name.length}")

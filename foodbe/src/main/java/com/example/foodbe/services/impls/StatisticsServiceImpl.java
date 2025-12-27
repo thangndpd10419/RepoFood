@@ -28,38 +28,79 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public DashboardStatsDTO getDashboardStats() {
+        // tg thời điểm hiện tại
         LocalDateTime now = LocalDateTime.now();
+        // localdatetome có các phưogn thưc:
+        //<biến> .getYear(), getMonthValue, getDayOfMonth. getHour, getMinute, getSecond
+        // < biến> .tolocaldate() => ngay thang năm từ localdatetime
+        // toLocalDate().atTime(LocalTime.MAX) : cuỗi ngay localdate
+        //toLocalDate().atStartOfDay(): đầu ngay ( luon dung vơi localdate
+        //
+
+        //các kiểu thươngg dung:
+        //đầu hôm nay: now.toLocalDate().atStartOfDay(); yyyy-mm-đd 00:00:00
+        //cuối hôm nay: now.toLocalDate().atTime(LocalTime.MAX); yyyy-MM-dd 23:59:59.99999999
+        //note: now là thười gian để lấy mốc, có thể mốc khác
+
+        //Đầu ngày hôm X (X ngày trước): now.minusDays(x).toLocalDate().atStartOfDay();
+        // cuối hôm x ( ngay trươc) ... attime
+
+        // tháng hiẹn tại: now.withDayOfMonth(1).toLocalDate().atStartOfDay();
+
+       // Đầu tháng X (X tháng trước, 1 ≤ X ≤ 12)
+        //now.withDayOfMonth(1).minusMonths(x).toLocalDate().atStartOfDay();
+
+        // now.tolocaldate -> chuyen sang ngày thang nam .áttartofday-> chuyen sang localdatetime vơi time 00:00:00 => lấy đầu ngày( thông kê từ đầu ngày)
+
+
+        //băt đầu từ 00:.. hôm nay
         LocalDateTime startOfToday = now.toLocalDate().atStartOfDay();
+        //kêt thuc hôm nay
         LocalDateTime endOfToday = now.toLocalDate().atTime(LocalTime.MAX);
 
+        // băt đầu hôm qu
         LocalDateTime startOfYesterday = startOfToday.minusDays(1);
+        //kêt thuc hôm qua
         LocalDateTime endOfYesterday = endOfToday.minusDays(1);
 
+        //băt đầu thang này từ ngay 1, 00:...
         LocalDateTime startOfMonth = now.toLocalDate().withDayOfMonth(1).atStartOfDay();
+        // băt đâu thang trươc
         LocalDateTime startOfLastMonth = startOfMonth.minusMonths(1);
+        //kêt thuc thang trươc
         LocalDateTime endOfLastMonth = startOfMonth.minusSeconds(1);
 
+        //  doanh thu hôm nay
         BigDecimal todayRevenue = orderRepository.sumRevenueByDateRange(
                 startOfToday, endOfToday, OrderStatus.COMPLETED);
 
+        // donah thu hôm qua
         BigDecimal yesterdayRevenue = orderRepository.sumRevenueByDateRange(
                 startOfYesterday, endOfYesterday, OrderStatus.COMPLETED);
 
+        // donah thu tháng này
         BigDecimal monthRevenue = orderRepository.sumRevenueByDateRange(
                 startOfMonth, endOfToday, OrderStatus.COMPLETED);
 
+        // donah thu tháng trước
         BigDecimal lastMonthRevenue = orderRepository.sumRevenueByDateRange(
                 startOfLastMonth, endOfLastMonth, OrderStatus.COMPLETED);
 
+        // tổng all đơn
         Long totalOrders = orderRepository.count();
+        // tổnh đơn hôm nay
         Long todayOrders = orderRepository.countOrdersByDateRange(startOfToday, endOfToday);
+        // tổng đơn hôm qua
         Long yesterdayOrders = orderRepository.countOrdersByDateRange(startOfYesterday, endOfYesterday);
 
         Long totalCustomers = userRepository.count();
         Long totalProducts = productRepository.count();
         Long totalCategories = categoryRepository.count();
 
+        // doanh thu tăng trưởng % tiền  hôm nay và hôm qua
         Double revenueGrowth = calculateGrowth(todayRevenue, yesterdayRevenue);
+
+        // doanh thu tăng trưởng %  đơn hàng hôm nay và hôm qua
         Double orderGrowth = calculateGrowth(
                 BigDecimal.valueOf(todayOrders),
                 BigDecimal.valueOf(yesterdayOrders)
@@ -79,6 +120,9 @@ public class StatisticsServiceImpl implements StatisticsService {
                 .build();
     }
 
+
+
+    // donah thu theo ngày
     @Override
     public List<RevenueByDateDTO> getRevenueByDay(LocalDate startDate, LocalDate endDate) {
         LocalDateTime start = startDate.atStartOfDay();
@@ -208,11 +252,18 @@ public class StatisticsServiceImpl implements StatisticsService {
     private Double calculateGrowth(BigDecimal current, BigDecimal previous) {
         if (previous == null || previous.compareTo(BigDecimal.ZERO) == 0) {
             return current != null && current.compareTo(BigDecimal.ZERO) > 0 ? 100.0 : 0.0;
+            // trước =0
+            // nếu sau >0 => tnawg 100%
+            // sau = 0 tăng 0%
         }
         if (current == null) {
             return -100.0;
+            // trước !=0 => sau =0 => -100%
         }
 
+
+        // bình thường: trươc và sau !=0
+        // ==> (sau - trước ) / trước  = % tăng trưởng
         return current.subtract(previous)
                 .divide(previous, 4, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100))

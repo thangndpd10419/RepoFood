@@ -5,6 +5,7 @@ import com.example.foodbe.exception_handler.NotFoundException;
 import com.example.foodbe.exception_handler.exception.InvalidDataException;
 import com.example.foodbe.models.AppUser;
 import com.example.foodbe.models.Token;
+import com.example.foodbe.models.UserStatus;
 import com.example.foodbe.request.auth.AuthRequest;
 import com.example.foodbe.response.auth.AuthResponse;
 import com.example.foodbe.services.AuthService;
@@ -49,6 +50,9 @@ public class AuthServiceImpl implements AuthService {
 
         if(appUser == null){
             throw new NotFoundException(ConstantUtils.ExceptionMessage.NOT_FOUND +email);
+        }
+        if (appUser.getStatus() != UserStatus.ACTIVE) {
+            throw new InvalidDataException("User is not active");
         }
 
         List<String> roles = userDetails.getAuthorities()

@@ -11,6 +11,10 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class UpdateCartDTO {
+
+    @NotNull
+    private Long id;
+
     @NotNull(message = "{entity.number.not.null}")
     @Min(value = 1, message = "{entity.number.positive}")
     @Max(value = 50, message = "....")

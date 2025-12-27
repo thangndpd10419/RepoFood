@@ -1,6 +1,7 @@
 package com.example.foodbe.mapper;
 
 import com.example.foodbe.request.user.UserCreateDTO;
+import com.example.foodbe.request.user.UserUpdateDTO;
 import com.example.foodbe.response.user.UserResponseDTO;
 import com.example.foodbe.models.AppUser;
 import org.springframework.stereotype.Component;
@@ -28,5 +29,16 @@ public class UserMapper {
                 .role(user.getRole())
                 .createdAt(user.getCreatedAt())
                 .build();
+    }
+
+    public void updateToEntity(UserUpdateDTO userUpdateDTO, String newPass, AppUser appUser){
+        if (userUpdateDTO ==null || appUser == null)return;
+
+        appUser.setName(userUpdateDTO.getName());
+        appUser.setEmail(userUpdateDTO.getEmail());
+        appUser.setPassword(newPass);
+        appUser.setPhone(userUpdateDTO.getPhone());
+        appUser.setStatus(userUpdateDTO.getStatus());
+        appUser.setRole(userUpdateDTO.getRole());
     }
 }

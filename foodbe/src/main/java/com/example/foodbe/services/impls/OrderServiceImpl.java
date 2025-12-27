@@ -102,6 +102,15 @@ public class OrderServiceImpl implements OrderService {
                Product product = productRepository.findById(detail.getProductId())
                        .orElseThrow(() -> new NotFoundException("Product not found: " + detail.getProductId()));
 
+
+               if(detail.getQuantity()> product.getQuality()){
+                   throw new RuntimeException("Quá số lươgn sản phẩm trong kho");
+               }
+               int newQuantity = product.getQuality()- detail.getQuantity();
+
+               product.setQuality(newQuantity);
+               productRepository.save(product);
+
                OrderItem orderItem = OrderItem.builder()
                        .order(order)
                        .product(product)
